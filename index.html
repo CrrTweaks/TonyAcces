@@ -112,7 +112,7 @@
       class="page flex-col min-h-screen bg-gradient-to-br from-blue-500 to-blue-900 pt-20 md:pt-6"
     >
       <div class="w-full max-w-5xl mx-auto p-6 animate-fadeIn">
-        <!-- User Card (desktop) -->
+        <!-- User Card -->
         <div
           class="hidden md:block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 mb-6 shadow-lg"
         >
@@ -148,21 +148,23 @@
           <h3 class="text-lg font-bold text-white mb-4">
             Configurazione ESP32
           </h3>
-          <div class="flex gap-3">
+          <div class="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
               id="esp32-ip"
               value="192.168.1.100"
-              class="flex-1 px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-white/50"
+              class="w-full flex-1 px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-white/50"
               placeholder="IP ESP32"
             />
+
             <button
               onclick="testConnection()"
-              class="bg-green-600/80 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition"
+              class="w-full sm:w-auto bg-green-600/80 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition"
             >
               Test
             </button>
           </div>
+
           <div class="mt-4 flex items-center gap-2">
             <div
               id="status-indicator"
