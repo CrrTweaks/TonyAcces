@@ -169,8 +169,7 @@ void setup() {
   lcd.print("WiFi OK");
   lcd.setCursor(0, 1);
   lcd.print(WiFi.localIP());
-  
-  //Registra tutti gli endpoint
+
   server.on("/ping", HTTP_GET, handlePing);
   server.on("/ping", HTTP_OPTIONS, handleOptions);
   
@@ -192,3 +191,4 @@ void setup() {
 void loop(){
   server.handleClient();
 }
+
