@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const db = require("../db");
+const { db, logAllUsers } = require("../db");
 
 const router = express.Router();
 
@@ -36,6 +36,9 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Errore server" });
   }
+
+  // Log Utenti
+  logAllUsers("DOPO REGISTER");
 });
 
 module.exports = router;

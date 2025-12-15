@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const db = require("../db");
+const { db, logAllUsers } = require("../db");
 
 const router = express.Router();
 
@@ -28,6 +28,9 @@ router.post("/", (req, res) => {
       userCode: user.userCode,
     });
   });
+
+  // Log
+  logAllUsers("DOPO LOGIN");
 });
 
 module.exports = router;
