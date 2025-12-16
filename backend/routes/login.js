@@ -22,15 +22,15 @@ router.post("/", (req, res) => {
       return res.status(401).json({ message: "Credenziali errate" });
     }
 
+    // LOOG Utenti
+    logAllUsers("DOPO LOGIN");
+
     res.json({
       name: user.name,
       email: user.email,
       userCode: user.userCode,
     });
   });
-
-  // Log
-  logAllUsers("DOPO LOGIN");
 });
 
 module.exports = router;

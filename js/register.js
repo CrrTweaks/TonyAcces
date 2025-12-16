@@ -1,43 +1,26 @@
-function handleRegister(event) {
+async function handleRegister(event) {
   event.preventDefault();
 
-  const name = document.getElementById("register-name").value.trim();
-  const email = document.getElementById("register-email").value.trim();
+  const name = document.getElementById("register-name").value;
+  const email = document.getElementById("register-email").value;
   const password = document.getElementById("register-password").value;
 
-  // Verifica se l'email esiste già
-  const existingUser = USERS_DB.find((u) => u.email === email);
-  if (existingUser) {
-    showAlert("error", "Email già registrata");
-    return;
+  try {
+    const res = await fetch("https://tonyacces.onrender.com/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message);
+
+    showAlert("success", "Registrazione completata!");
+    showPage("login");
+  } catch (err) {
+    showAlert("error", err.message);
   }
-
-  // Genera codice utente univoco
-  const userCode = generateUserCode(name);
-
-  // Crea nuovo utente
-  const newUser = {
-    id: USERS_DB.length + 1,
-    name: name,
-    email: email,
-    password: password,
-    userCode: userCode,
-  };
-
-  // Aggiungi al database
-  USERS_DB.push(newUser);
-
-  // IMPORTANTE: Salva nel localStorage
-  saveUsers();
-
-  // Pulisci il form
-  document.getElementById("register-name").value = "";
-  document.getElementById("register-email").value = "";
-  document.getElementById("register-password").value = "";
-
-  // Mostra messaggio di successo e vai al login
-  showAlert("success", "Registrazione completata! Ora puoi accedere");
-  showPage("login");
 }
 
 function generateUserCode(name) {

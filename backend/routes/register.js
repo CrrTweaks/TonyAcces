@@ -28,6 +28,9 @@ router.post("/", async (req, res) => {
           return res.status(409).json({ message: "Email già registrata" });
         }
 
+        // LOG DOPO REGISTER
+        logAllUsers("DOPO REGISTER");
+
         res.status(201).json({
           message: "Registrazione completata",
         });
@@ -36,9 +39,6 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Errore server" });
   }
-
-  // Log Utenti
-  logAllUsers("DOPO REGISTER");
 });
 
 module.exports = router;
