@@ -1,0 +1,1 @@
+fare file .env con dominio cosi da non cambiare manualmente
