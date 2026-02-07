@@ -160,14 +160,11 @@ void setup() {
     Serial.print(".");
   }
   
-  Serial.println();
-  Serial.print("ESP32 IP: ");
-  Serial.println(WiFi.localIP());
-  
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("WiFi OK");
   lcd.setCursor(0, 1);
+  lcd.print("Esp32 IP: ")
   lcd.print(WiFi.localIP());
 
   server.on("/ping", HTTP_GET, handlePing);
@@ -180,15 +177,10 @@ void setup() {
   server.on("/user", HTTP_OPTIONS, handleOptions);
   
   server.begin();
-  Serial.println("Server avviato!");
-  
-  delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Pronto!");
 }
 
 void loop(){
   server.handleClient();
 }
+
 
